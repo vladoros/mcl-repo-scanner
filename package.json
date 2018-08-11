@@ -1,0 +1,24 @@
+{
+    "name": "mcl-repo-scanner",
+    "version": "0.0.1",
+    "description": "Example repository scanner + KoaJS API using Metadefender Cloud",
+    "main": "index.mjs",
+    "scripts": {
+        "start": "node --experimental-modules ./index.mjs",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "metadefender"
+    ],
+    "author": "Vlad Oros",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^6.0.0",
+        "koa": "^2.5.2",
+        "koa-joi-router": "^5.1.0",
+        "koa-logger": "^3.2.0",
+        "koa-markdown": "^2.0.2",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.2"
+    }
+}

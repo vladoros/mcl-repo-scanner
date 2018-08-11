@@ -1,0 +1,12 @@
+{
+    "name": "mcl-repo-scanner",
+    "description": "Example repository scanner + KoaJS API using Metadefender Cloud",
+    "repository": "https://github.com/vladoros/mcl-repo-scanner",
+    "keywords": [
+        "file",
+        "upload",
+        "file security"
+    ],
+    "website": "https://metadefender.opswat.com/",
+    "logo": "https://mcl-cdn.opswat.com/1.18.0-082d857/assets/img/svg/MD-Cloud-logo-black.svg"
+}
