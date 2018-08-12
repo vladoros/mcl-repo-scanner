@@ -1,7 +1,6 @@
 const tryHandle = async(ctx, next) => {
     try {
-        let cached = await ctx.cashed();
-        if (cached) return;
+        if (await ctx.cashed()) return;
         await next();
     } catch (err) {
         if (err.response) {

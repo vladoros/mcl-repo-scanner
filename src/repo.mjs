@@ -2,26 +2,49 @@ import rp from 'request-promise-native';
 import { uploadFile } from './mcl';
 import { getResults } from './mcl.mjs';
 
-let github_api = `https://api.github.com`
+const scan = async({ type, username, repo, ref, wait = false }) => {
+    let result;
+    let providerAPI, uri, checkUri = '';
+    switch (type) {
+        case 'bitbucket':
+            providerAPI = `https://bitbucket.org`;
+            uri = `${providerAPI}/${username}/${repo}/get/${ref}.tar.gz`;
+            checkUri = `https://api.bitbucket.org/2.0/repositories/${username}/${repo}/downloads`;
+            break;
+        case 'gitlab':
+            providerAPI = `https://gitlab.com`;
+            uri = `${providerAPI}/${username}/${repo}/-/archive/${ref}/${repo}-${ref}.tar.gz`;
+            checkUri = `https://gitlab.com/api/v4/users/${username}/projects`;
+            break;
+        default:
+            providerAPI = `https://api.github.com`
+            checkUri = `${providerAPI}/repos/${username}/${repo}`
+            uri = `${providerAPI}/repos/${username}/${repo}/tarball/${ref}`
+    }
 
-const scan = async({ username, repo, ref, wait = false }) => {
-    let rep = await rp({
+    result = await rp({
         method: 'get',
-        uri: `${github_api}/repos/${username}/${repo}`,
+        uri: checkUri,
         headers: { 'User-Agent': 'scan' },
-        json: true
-    });
-    if (rep) {
-        let response = {};
-        let result = await rp({
+    })
+    if (type === 'gitlab') {
+        try {
+            result = JSON.parse(result)
+        } catch {
+            result = false
+        }
+        result = result && result.filter(x => x.name === repo).length > 0;
+    }
+    if (result && providerAPI) {
+        result = await rp({
             method: 'get',
-            uri: `${github_api}/repos/${username}/${repo}/tarball/${ref}`,
+            uri: uri,
             headers: { 'User-Agent': 'scan' },
         }).pipe(uploadFile({ username, repo, ref }));
-        response = !wait ? result.data_id : await lookup(getResults, { data_id: result.data_id }, 1000, 25);
-        return response;
+        return !wait ? result.data_id :
+            await lookup(getResults, { data_id: result.data_id }, 1000, 25);
     } else {
-        throw new Error('Could not access github')
+        throw new Error(`Could not repo from ${type}`)
     }
 }
 

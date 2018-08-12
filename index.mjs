@@ -26,14 +26,29 @@ route
             ctx.assert(!ctx.invalid, 400, ...ctx.invalid.body.details)
             return;
         }
-        ctx.body = {...await repo.scan({ username: ctx.request.body.username, repo: ctx.request.body.repo, ref: ctx.request.body.ref }) };
+        ctx.body = {
+            data_id: await repo.scan({
+                type: ctx.request.body.type,
+                username: ctx.request.body.username,
+                repo: ctx.request.body.repo,
+                ref: ctx.request.body.ref,
+            }).toString()
+        };
     })
-    .get('/scan/:username/:repo/:ref?', scanParamValidator, async(ctx) => {
+    .get('/scan/:type/:username/:repo/:ref?', scanParamValidator, async(ctx) => {
         if (ctx.invalid) {
             ctx.assert(!ctx.invalid, 400, ...ctx.invalid.params.details)
             return;
         }
-        ctx.body = {...await repo.scan({ username: ctx.request.params.username, repo: ctx.request.params.repo, ref: ctx.request.params.ref, wait: true }) };
+        ctx.body = {
+            ...await repo.scan({
+                type: ctx.request.params.type,
+                username: ctx.request.params.username,
+                repo: ctx.request.params.repo,
+                ref: ctx.request.params.ref,
+                wait: true
+            })
+        };
     })
     .get('/repo/file/:data_id', repoValidator.file, async(ctx) => {
         if (ctx.invalid) {
