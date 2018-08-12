@@ -5,66 +5,15 @@
     <title>{TITLE}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
     <div class="container">
-        <!-- <h2>Repository scan</h2>
-        <form id="reposcan">
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <label class="sr-only" for="username">Username</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">@</div>
-                        </div>
-                        <input type="text" required="true" class="form-control" name="username" placeholder="Username">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <label class="sr-only" for="repository">Repository</label>
-                    <input type="text" required="true" class="form-control mb-2" name="repo" placeholder="Repository">
-                </div>
-                <div class="col-auto">
-                    <label class="sr-only" for="branch">Branch</label>
-                    <input type="text" class="form-control mb-2" name="branch" placeholder="Branch">
-                </div>
-                <div class="col-auto">
-                    <button type="button" onclick="scan_repo()" class="btn btn-primary mb-2">Scan</button>
-                </div>
-            </div>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-                Branch is optional, by default master will be scanned if not specified
-            </small>
-        </form>
-        <br/>
-        <div id="result"></div> -->
         {BODY}
     </div>
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="https://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
     <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-    <script src="https://cdn.staticfile.org/respond.js/1.2.0/respond.min.js"></script>
-    <!--
-    <script type="text/javascript">
-        function scan_repo() {
-            var data = {};
-            $('form[id=reposcan]').serializeArray().map(x => x.value ? data[x.name] = x.value : null);
-            $.ajax({
-                type: 'POST',
-                url: '/repo',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                success: function(msg) {
-                    $("#result").html(msg);
-                }
-            });
-        }
-    </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 </body>
 
 </html>
