@@ -3,7 +3,7 @@
 Repository scanner API example with [Metadefender Cloud APIs](https://onlinehelp.opswat.com/mdcloud).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/vladoros/mcl-repo-scanner)
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/vladoros/mcl-repo-scanner)
 [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/vladoros/mcl-repo-scanner)
 
 ### Prerequisites
