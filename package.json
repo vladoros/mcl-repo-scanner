@@ -1,6 +1,6 @@
 {
     "name": "mcl-repo-scanner",
-    "version": "0.3.0",
+    "version": "0.4.2",
     "description": "Example repository scanner + KoaJS API using Metadefender Cloud",
     "main": "index",
     "scripts": {

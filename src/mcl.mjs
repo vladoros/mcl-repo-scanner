@@ -1,4 +1,5 @@
 import rp from 'request-promise-native';
+import request from 'request';
 
 const mcl_api = 'https://api.metadefender.com/v2';
 
@@ -16,14 +17,14 @@ export const getResults = async({ data_id, hash }) => {
     throw new Error('Could not access metadefender');
 }
 
-export const uploadFile = ({ username, repo, ref }) => rp.post({
+export const uploadFile = ({ file, callback }) => request({
     method: 'post',
     uri: `${mcl_api}/file`,
     headers: {
         apikey: process.env.MCL_APIKEY,
-        filename: `${username}/${repo}-${ref}.tar.gz`
+        filename: file
     },
     json: true
-})
+}, callback);
 
-export default { getResults, uploadFile };
+export default { getResults };
