@@ -2,7 +2,7 @@ import router from 'koa-joi-router';
 const Joi = router.Joi;
 
 // TODO add repo type
-const scanValidator = {
+export const scanValidator = {
     validate: {
         body: {
             username: Joi.string().max(100).required(),
@@ -21,4 +21,14 @@ const scanValidator = {
     }
 }
 
+export const scanParamValidator = {
+    validate: {
+        params: {
+            username: Joi.string().max(100).required(),
+            repo: Joi.string().max(100).required(),
+            ref: Joi.string().max(100).default('master')
+        },
+        continueOnError: true
+    },
+}
 export default scanValidator;
