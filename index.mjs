@@ -35,7 +35,7 @@ route
             }).toString()
         };
     })
-    .get('/scan/:type/:username/:repo/:ref?', scanParamValidator, async(ctx) => {
+    .get('/scan/:type?/:username/:repo/:ref?', scanParamValidator, async(ctx) => {
         if (ctx.invalid) {
             ctx.assert(!ctx.invalid, 400, ...ctx.invalid.params.details)
             return;

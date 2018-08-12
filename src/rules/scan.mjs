@@ -1,7 +1,6 @@
 import router from 'koa-joi-router';
 const Joi = router.Joi;
 
-// TODO add repo type
 export const scanValidator = {
     validate: {
         body: {
