@@ -16,6 +16,11 @@ const app = new koa();
 const route = new router();
 const cacheTime = 60 * 1000;
 dotenv.config();
+
+if(!process.env.MCL_APIKEY) {
+    throw new Error('MCL_APIKEY missing in env')
+}
+
 const cache = lruCache({
     maxAge: cacheTime // global max age
 })
