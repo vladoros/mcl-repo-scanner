@@ -30,7 +30,7 @@ const scan = async({ type, username, repo, ref, wait = false }) => {
     if (type === 'gitlab') {
         try {
             result = JSON.parse(result)
-        } catch {
+        } catch(err) {
             result = false
         }
         result = result && result.filter(x => x.name === repo).length > 0;
