@@ -11,13 +11,15 @@ import repo from './src/repo';
 import { getResults } from './src/mcl';
 import tryHandle from './src/error_handler';
 import markdown from './src/markdown';
+import os from 'os';
 
 const app = new koa();
 const route = new router();
 const cacheTime = 60 * 1000;
+const port = process.env.PORT || 3001;
 dotenv.config();
 
-if(!process.env.MCL_APIKEY) {
+if (!process.env.MCL_APIKEY) {
     throw new Error('MCL_APIKEY missing in env')
 }
 
@@ -84,4 +86,5 @@ app
     }))
     .use(tryHandle)
     .use(route.middleware())
-    .listen(process.env.PORT || 3001);
+    .listen(port);
+console.log(`started at ${os.hostname}:${port}`)
